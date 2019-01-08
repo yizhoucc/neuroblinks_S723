@@ -74,11 +74,11 @@ metadata.stim.type=typestring{get(handles.popupmenu_stimtype,'Value')};
 
 % Set ITI using base time plus optional random range
 % We have to initialize here because "stream" function uses metadata.stim.c.ITI
-base_ITI = 10; % hard coded by OKim 190107, I expect this to be overwritten by the trialtable later but not sure
-rand_ITI = 5; % hard coded by OKim 190107, I expect this to be overwritten by the trialtable later but not sure
+base_ITI = str2double(get(handles.edit_ITI,'String'));
+rand_ITI = str2double(get(handles.edit_ITI_rand,'String'));
 metadata.stim.c.ITI = base_ITI + rand(1,1) * rand_ITI;
 
-metadata.cam.time(1)=200; % hard coded by OKim 190107, I expect this to be overwritten by the trialtable later but not sure
+metadata.cam.time(1)=str2double(get(handles.edit_pretime,'String'));
 metadata.cam.time(3)=metadata.cam.recdurA-metadata.cam.time(1);
 metadata.cam.cal=0;
 metadata.cam.calib_offset=0;
@@ -654,7 +654,7 @@ elseif  strcmpi(metadata.stim.type, 'conditioning')
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Greg%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     if metadata.stim.l.delay==5
-        datatoarduino(11)=(metadata.stim.c.isi+metadata.stim.c.cs_addreps*metadata.stim.c.cs_period)-70;
+        datatoarduino(11)=(metadata.stim.c.isi+metadata.stim.c.cs_addreps*metadata.stim.c.cs_period)-100;
     elseif metadata.stim.l.delay==6
         datatoarduino(11)=0;
     else
@@ -997,6 +997,33 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
+function edit_pretime_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_pretime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: get(hObject,'String') returns contents of edit_pretime as text
+%        str2double(get(hObject,'String')) returns contents of edit_pretime as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_pretime_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_pretime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% % --- Executes on button press in pushbutton7.
+% function pushbutton7_Callback(hObject, eventdata, handles)
+% % hObject    handle to pushbutton7 (see GCBO)
+% % eventdata  reserved - to be defined in a future version of MATLAB
+% % handles    structure with handles and user data (see GUIDATA)
+
+
 
 % --- Executes on button press in checkbox_save_metadata.
 function checkbox_save_metadata_Callback(hObject, eventdata, handles)
@@ -1005,6 +1032,26 @@ function checkbox_save_metadata_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % Hint: get(hObject,'Value') returns toggle state of checkbox_save_metadata
 
+
+function edit_ITI_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_ITI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% Hints: get(hObject,'String') returns contents of edit_ITI as text
+%        str2double(get(hObject,'String')) returns contents of edit_ITI as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_ITI_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_ITI (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
 
 
 function edit_puffdur_Callback(hObject, eventdata, handles)
@@ -1117,6 +1164,28 @@ function checkbox_verbose_Callback(hObject, eventdata, handles)
 
 
 
+function edit_posttime_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_posttime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_posttime as text
+%        str2double(get(hObject,'String')) returns contents of edit_posttime as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_posttime_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_posttime (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
 % --- Executes on button press in pushbutton_abort.
 function pushbutton_abort_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_abort (see GCBO)
@@ -1133,6 +1202,31 @@ stop(vidobj);
 flushdata(vidobj);
 
 src.FrameStartTriggerSource = 'Freerun';
+
+
+
+
+function edit_ITI_rand_Callback(hObject, eventdata, handles)
+% hObject    handle to edit_ITI_rand (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit_ITI_rand as text
+%        str2double(get(hObject,'String')) returns contents of edit_ITI_rand as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit_ITI_rand_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit_ITI_rand (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
 
 
 function edit_StopAfterTrial_Callback(hObject, eventdata, handles)

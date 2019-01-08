@@ -2,7 +2,7 @@ function InitCam(ch,recdur)
 
 % First delete any existing image acquisition objects
 imaqreset
-imaqmex('feature','-gigeDisablePacketResend',true); %%%%%%%%%%%%%%%%
+
 disp('Creating video object ...')
 % vidobj = videoinput('gentl', ch, 'Mono8');
 vidobj = videoinput('gige', ch, 'Mono8');

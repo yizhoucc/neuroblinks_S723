@@ -3,7 +3,6 @@ function Launch(rig,cam)
 % Load local configuration for these rigs
 % Should be somewhere in path but not "neuroblinks" directory or subdirectory
 neuroblinks_config;	% Per user settings
-
 configure; % Configuration script
 
 %% Initialize Camera
@@ -18,13 +17,14 @@ if isempty(com_ports{rig}),
 end
 
 arduino=serial(com_ports{rig},'BaudRate',115200);
+arduino.InputBufferSize = 512*8;
 % arduino.DataTerminalReady='off';	% to prevent resetting Arduino on connect
 fopen(arduino);
 setappdata(0,'arduino',arduino);
 
 
 %% Open GUI
-clear MainWindow;    % Need to do this to clear persistent variables defined within MainWindow and subfunctions
+clear MainWindow;    % Need to do this to clear persisent variables defined within MainWindow and subfunctions
 ghandles.maingui=MainWindow;
 set(ghandles.maingui,'units','pixels')
 set(ghandles.maingui,'position',[ghandles.pos_mainwin ghandles.size_mainwin])
