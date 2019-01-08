@@ -8,7 +8,6 @@ src = getappdata(0,'src');
 
 handles = guidata(ghandles.maingui);
 
-%%%%%%%%%%%%%%
 
 if get(handles.checkbox_record,'Value') == 1  
     incrementStimTrial()
@@ -17,13 +16,13 @@ else
     nosavetrial();  
 end
 
-
 % Set camera to freerun mode so we can preview
 if isprop(src,'FrameStartTriggerSource')
     src.FrameStartTriggerSource = 'Freerun';
 else
     src.TriggerSource = 'Freerun';
 end
+
 
 function incrementStimTrial()
 trials=getappdata(0,'trials');

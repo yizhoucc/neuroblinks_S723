@@ -33,7 +33,7 @@ function neuroblinks(varargin)
     if isempty(founddeviceids)
         error('No cameras found')
     end
- 
+
     if ~isempty(ALLOWEDCAMS)
         % This code doesn't work on some versions of Matlab so it's not working for you, you can
         % set ALLOWEDCAMS to an empty cell array in "neuroblinks_config"

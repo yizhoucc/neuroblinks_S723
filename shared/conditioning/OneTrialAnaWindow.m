@@ -206,7 +206,7 @@ str_tl={[sprintf('Trial Viewer (1-%d)',tnum_max)] [trials.eye(t_num).stimtype]};
 % ------- for eye -----
 subplot('position',[0.05 0.17 0.90 0.50], 'Parent', handles.uipanel_behavior)
 cla
-plot([-1 1]*2750, [0 0],'k:'),  hold on,   plot([-1 1]*2750, [1 1],'k:'), 
+plot([-1 1]*1000, [0 0],'k:'),  hold on,   plot([-1 1]*1000, [1 1],'k:'), 
 
 set(gca,'ylim',[-0.15 1.20], 'ytick',[0:0.5:1], 'box', 'off','tickdir','out')
 

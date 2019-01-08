@@ -57,7 +57,10 @@ end
 [p,basename,ext]=fileparts(fullfname);
 
 writeStimVideo(data,metadata,sprintf('%s/compressed/%s',p,basename));
-save(sprintf('%s/compressed/%s_meta',p,basename),'metadata','encoder');
+metadata.encoder.counts=encoder.counts;
+metadata.encoder.time=encoder.time;
+metadata.encoder.displacement=encoder.displacement;
+save(sprintf('%s/compressed/%s_meta',p,basename),'metadata');
 
 if VERBOSE
 	fprintf('Compressed file %s written to disk.\n',basename)
@@ -75,9 +78,3 @@ function fnames=getFileNames(fn)
     for i=1:lg,
         fnames{i}=fn(i).name;
     end
-    
-    
-    
-        
-        
-        
