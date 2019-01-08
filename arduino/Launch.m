@@ -27,7 +27,7 @@ setappdata(0,'arduino',arduino);
 clear MainWindow;    % Need to do this to clear persisent variables defined within MainWindow and subfunctions
 ghandles.maingui=MainWindow;
 set(ghandles.maingui,'units','pixels')
-set(ghandles.maingui,'position',[ghandles.pos_mainwin ghandles.size_mainwin])
+%set(ghandles.maingui,'position',[ghandles.pos_mainwin ghandles.size_mainwin])
 
 % Save handles to root app data
 setappdata(0,'ghandles',ghandles)

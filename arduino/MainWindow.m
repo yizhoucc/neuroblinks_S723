@@ -74,11 +74,11 @@ metadata.stim.type=typestring{get(handles.popupmenu_stimtype,'Value')};
 
 % Set ITI using base time plus optional random range
 % We have to initialize here because "stream" function uses metadata.stim.c.ITI
-base_ITI = str2double(get(handles.edit_ITI,'String'));
-rand_ITI = str2double(get(handles.edit_ITI_rand,'String'));
+base_ITI = 10; % hard-coded by OKim 190108 so can get rid of GUI implentation as current version relies on trialtable for each ITI
+rand_ITI = 5; % hard-coded by OKim 190108 so can get rid of GUI implentation as current version relies on trialtable for each ITI
 metadata.stim.c.ITI = base_ITI + rand(1,1) * rand_ITI;
 
-metadata.cam.time(1)=str2double(get(handles.edit_pretime,'String'));
+metadata.cam.time(1)=200; % hard-coded by OKim 190108 so can get rid of GUI implentation as current version relies on trialtable for camera times for each trial
 metadata.cam.time(3)=metadata.cam.recdurA-metadata.cam.time(1);
 metadata.cam.cal=0;
 metadata.cam.calib_offset=0;
